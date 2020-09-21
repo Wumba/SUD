@@ -1,18 +1,14 @@
 package exc1;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
-public class UserInput {
+public class IfCondition {
 
-    LinkedHashMap<Double, Double> orderMap = new LinkedHashMap<>();
+    LinkedHashMap<Double, Double> orderMap = new LinkedHashMap<Double, Double>();
 
     public void getUserInput() {
 
-        BufferedReader userInputReader = new BufferedReader(new InputStreamReader(System.in));
 
         double price = 0;
         double productAmount = 0;
@@ -21,14 +17,13 @@ public class UserInput {
         while(!continueChecker.equals("ja")) {
 
             System.out.println("Geben sie einen Preis ohne Eurozeichen ein.");
-
             try {
-                String rawInput = userInputReader.readLine();
-                price = Double.parseDouble(rawInput);
-            } catch (IOException e) {
+                Scanner userInputScanner = new Scanner(System.in);
+                price = userInputScanner.nextDouble();
+            } catch (Exception e) {
                 System.out.println("Der Preis kann nicht eingelesen werden. \n"
                         + " Bitte geben sie einen einen Wert als Zahl ein."
-                        + " Nachkommastellen bitte mit Punkt trennen!");
+                        + " Nachkommastellen bitte mit Punkt trennen.");
                 e.printStackTrace();
             }
 
