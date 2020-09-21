@@ -1,7 +1,0 @@
-# Java
-
-## Switch Case
-
-* use it when possible
-* use it when 5 different choices are proved
-* for 3-4 choices it is optional 
