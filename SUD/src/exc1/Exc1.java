@@ -1,20 +1,59 @@
 package exc1;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class IfCondition {
+public class Exc1 {
 
     LinkedHashMap<Double, Double> orderMap = new LinkedHashMap<Double, Double>();
+    Logger LOG = Logger.getLogger(Exc1.class.getName());
 
-    public void getUserInput() {
+    private String readDataAndPare() {
+
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
+            String name = bufferedReader.readLine();
+            return name;
+        } catch (IOException e) {
+            e.printStackTrace();
+            LOG.log(Level.SEVERE, "Die Eingabe ist gesheitert");
+            return "Error";
+        }
+    }
+
+    private double parseInputToDouble(String input) {
+        Pattern doublePoint = Pattern.compile("\\d+\\.\\d+");
+        Pattern doubleComma = Pattern.compile("\\d+\\,\\d+");
+        Matcher matcherPoint = doublePoint.matcher(input);
+        Matcher matcherComma = doublePoint.matcher(input);
+
+        if (m.find()) {
+            String priceAsString = m.group(0);
+            return Double.parseDouble(priceAsString);
+        } else {
+
+        }
+
+
+
+
+    }
+
+    private void handleUserInput() {
 
 
         double price = 0;
         double productAmount = 0;
-        String	continueChecker = "";
+        String continueChecker = "";
 
-        while(!continueChecker.equals("ja")) {
+        while (!continueChecker.equals("ja")) {
+
 
             System.out.println("Geben sie einen Preis ohne Eurozeichen ein.");
             try {
@@ -67,7 +106,7 @@ public class IfCondition {
     }
 
     public static void main(String[] args) {
-        IfCondition bla = new IfCondition();
+        Exc1 bla = new Exc1();
         bla.consoleInput();
     }
 
