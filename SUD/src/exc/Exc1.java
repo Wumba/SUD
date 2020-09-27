@@ -14,6 +14,7 @@ public class Exc1 {
     private boolean receiveInput;
     private final LinkedHashMap<Integer, Double> orderMap;
     private double sum;
+    BufferedReader bufferedReader;
 
     public Exc1() {
         receiveInput = true;
@@ -28,7 +29,8 @@ public class Exc1 {
      */
     private String readDataFromConsole() {
         String output;
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        // todo: why does autoclosable not work? Why can't I close it at all?
         try {
             output = bufferedReader.readLine();
         } catch (IOException e) {
@@ -37,6 +39,14 @@ public class Exc1 {
             output = "Error";
         }
         return output;
+    }
+
+    private void closeReader() {
+        try {
+            bufferedReader.close();
+        } catch (IOException exception) {
+            LOG.log(Level.SEVERE, "Reader can't be closed!");
+        }
     }
 
     /**
@@ -157,11 +167,11 @@ public class Exc1 {
             }
         });
 
+        System.out.println("The total price of everything is  " + this.sum);
         orderMap.entrySet().stream().forEach(map -> {
             Double aDouble = map.getKey() * map.getValue();
             add(aDouble);
         });
-        System.out.println("The total price of everything is  " + this.sum);
     }
 
     private void add(double aDouble) {
@@ -211,6 +221,7 @@ public class Exc1 {
             exitInput(data3);
         }
         printTheMap();
+        closeReader();
     }
 
     public static void main(String[] args) {
