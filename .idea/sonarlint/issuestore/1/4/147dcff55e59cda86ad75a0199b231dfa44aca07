@@ -1,0 +1,37 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(áä·
+r
+java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "name".(µû§
+c	java:S116"NRename this field "LOG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÃÜ¾
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(À½Õşÿÿÿÿ
+[
+java:S1854""@Remove this useless assignment to local variable "matcherComma".(¾ùØ¾üÿÿÿÿ
+U
+java:S1854!"@Remove this useless assignment to local variable "matcherPoint".(Ñ›Ô
+Z
+java:S1854 "?Remove this useless assignment to local variable "doubleComma".(îÇÜØıÿÿÿÿ
+>	java:S108'")Either remove or fill this block of code.(å¥‡
+S	java:S106:"9Replace this use of System.out or System.err by a logger.(ÜŒºìıÿÿÿÿ
+N	java:S106?"9Replace this use of System.out or System.err by a logger.(´ö³‚
+S	java:S106E"9Replace this use of System.out or System.err by a logger.(ı­›©øÿÿÿÿ
+M	java:S106J"9Replace this use of System.out or System.err by a logger.(§€Ğj
+N	java:S106P"9Replace this use of System.out or System.err by a logger.(ŸÑ„Ş
+M	java:S106U"9Replace this use of System.out or System.err by a logger.(¼›f
+E
+java:S2093Q"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+S	java:S106d"9Replace this use of System.out or System.err by a logger.(©éÒúÿÿÿÿ
+N	java:S106e"9Replace this use of System.out or System.err by a logger.(•¶äï
+N	java:S106f"9Replace this use of System.out or System.err by a logger.(äú‘ß
+K
+java:S1481 "0Remove this unused "doubleComma" local variable.(îÇÜØıÿÿÿÿ
+F
+java:S1481!"1Remove this unused "matcherPoint" local variable.(Ñ›Ô
+L
+java:S1481""1Remove this unused "matcherComma" local variable.(¾ùØ¾üÿÿÿÿ
+J
+java:S1144"4Remove this unused private "readDataAndPare" method.(Ø’â
+R
+java:S1144"7Remove this unused private "parseInputToDouble" method.(ÒÕ¢‰øÿÿÿÿ
+J
+java:S11440"4Remove this unused private "handleUserInput" method.(½í«–
