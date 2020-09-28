@@ -54,23 +54,6 @@ public class Bestellung {
         this.sum = this.sum + aDouble;
     }
 
-    private void exitInput(String input) {
-        switch (input) {
-            case "no":
-            case "nein":
-            case "n":
-            case "No":
-            case "NO":
-            case "Never":
-                this.receiveInput = false;
-                break;
-            default:
-                this.receiveInput = true;
-                break;
-        }
-
-    }
-
     private void speakWithUser() {
 
         System.out.println("WELCOME TO GIJA SHOP");
@@ -94,7 +77,7 @@ public class Bestellung {
 
             System.out.println("Would you like to enter another article? [y/n]");
             String data3 = inputReader.readDataFromConsoleToString();
-            exitInput(data3);
+            this.receiveInput = inputReader.exitInput(data3);
         }
         printTheMap();
         inputReader.closeReader();

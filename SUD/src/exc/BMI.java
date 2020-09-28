@@ -1,9 +1,5 @@
 package exc;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class BMI {
 
@@ -18,32 +14,30 @@ public class BMI {
 
 
     private double calculateBMI(double height, double weight) {
-        Double result = (weight / Math.pow(height, height));
+        double result = (weight / Math.pow(height, height));
         return inputReader.roundDouble(result, 2);
     }
 
-    private  checkBMIResult(double bmiResult) {
-        int caloriesAllowed;
-        String answer;
+    private BMIResultPair checkBMIResult(double bmiResult) {
+        BMIResultPair pair = new BMIResultPair();
 
         if (bmiResult > 0 && bmiResult < 18.5) {
-            caloriesAllowed = 3000;
-            answer = "underweight";
+            pair.setCaloriesAllowed(3000);
+            pair.setAnswer("underweight");
         } else if (bmiResult >= 18.5 && bmiResult < 25) {
-            caloriesAllowed = 2000;
-            answer = "normal weight";
+            pair.setCaloriesAllowed(2000);
+            pair.setAnswer("normal weight");
         } else if (bmiResult >= 25 && bmiResult < 30) {
-            caloriesAllowed = 1800;
-            answer = "overweight";
+            pair.setCaloriesAllowed(1800);
+            pair.setAnswer("overweight");
         } else if (bmiResult >= 30 && bmiResult < 40) {
-            caloriesAllowed = 1200;
-            answer = "obesity";
+            pair.setCaloriesAllowed(1200);
+            pair.setAnswer("obesity");
         } else {
-            caloriesAllowed = 700;
-            answer = "heavy obesity";
+            pair.setCaloriesAllowed(700);
+            pair.setAnswer("heavy obesity");
         }
-
-
+    return pair;
     }
 
     private void speakWithUser() {
@@ -57,19 +51,28 @@ public class BMI {
 
             while (heightData == 0.0) {
                 System.out.println("Please enter your height in meter:");
-                String data = inputReader.readDataFromConsoleToString();
-                heightData = inputReader.checkAndParseDoubleInput(data);
+                String data1 = inputReader.readDataFromConsoleToString();
+                heightData = inputReader.checkAndParseDoubleInput(data1);
             }
 
             while (weightData == 0.0) {
                 System.out.println("Please enter your weight in kg:");
-                String data = inputReader.readDataFromConsoleToString();
-                weightData = inputReader.checkAndParseDoubleInput(data);
+                String data2 = inputReader.readDataFromConsoleToString();
+                weightData = inputReader.checkAndParseDoubleInput(data2);
             }
             result = calculateBMI(heightData, weightData);
             System.out.println("Your BMI is " + result + " kg/m^2");
-            checkBMIResult(result);
+            System.out.println(checkBMIResult(result).getAnswer());
+            System.out.println("You should eat " + checkBMIResult(result).getCaloriesAllowed() + " kcal per day.");
+            System.out.println("Want to calculate again? [y/n]");
+            String input = inputReader.readDataFromConsoleToString();
+            this.receiveInput = inputReader.exitInput(input);
         }
+    }
+
+    public static void main(String[] args) {
+        BMI bmi = new BMI();
+        bmi.speakWithUser();
     }
 }
 

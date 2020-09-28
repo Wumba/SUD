@@ -149,5 +149,20 @@ public class InputReader {
             return 0;
         }
     }
+
+    public boolean exitInput(String input) {
+        switch (input) {
+            case "no":
+            case "nein":
+            case "n":
+            case "No":
+            case "NO":
+            case "Never":
+                return false;
+            default:
+                return true;
+        }
+
+    }
 }
 
