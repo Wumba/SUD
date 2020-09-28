@@ -1,17 +1,22 @@
 package exc;
 
-public class PublicTransportZone {
+public class PublicTransportZone implements UserInteractionViaConsole {
     private boolean receiveInput;
     private final InputReader inputReader;
 
-    public  PublicTransportZone() {
+    public PublicTransportZone() {
         inputReader = new InputReader();
         receiveInput = true;
     }
 
+    /**
+     * Transfer int numbers to a word
+     * @param number int
+     * @return String
+     */
     public String transferIntegerToWord(int number) {
         String numberAsString;
-        switch(number) {
+        switch (number) {
             case 1:
                 numberAsString = "one";
                 break;
@@ -48,9 +53,10 @@ public class PublicTransportZone {
         }
         return numberAsString;
 
-        }
+    }
 
-    private void speakWithUser() {
+    @Override
+    public void speakWithUser() {
         System.out.println("WELCOME TO GIJA PUBLIC TRANSPORT");
 
         while (receiveInput) {

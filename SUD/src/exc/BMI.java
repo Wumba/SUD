@@ -1,10 +1,10 @@
 package exc;
 
 
-public class BMI {
+public class BMI implements UserInteractionViaConsole {
 
     private boolean receiveInput;
-    private InputReader inputReader;
+    private final InputReader inputReader;
 
     public BMI() {
         receiveInput = true;
@@ -12,7 +12,12 @@ public class BMI {
     }
 
 
-
+    /**
+     * Formula to calculate BMI
+     * @param height double
+     * @param weight double
+     * @return double
+     */
     private double calculateBMI(double height, double weight) {
         double result = (weight / Math.pow(height, height));
         return inputReader.roundDouble(result, 2);
@@ -40,7 +45,11 @@ public class BMI {
     return pair;
     }
 
-    private void speakWithUser() {
+    /**
+     * User Interaction via Console
+     */
+    @Override
+    public void speakWithUser() {
 
         System.out.println("WELCOME TO GIJA BMI CALCULATOR");
 
@@ -64,7 +73,7 @@ public class BMI {
             System.out.println("Your BMI is " + result + " kg/m^2");
             System.out.println(checkBMIResult(result).getAnswer());
             System.out.println("You should eat " + checkBMIResult(result).getCaloriesAllowed() + " kcal per day.");
-            System.out.println("Want to calculate again? [y/n]");
+            System.out.println("Want to calculate again? (maybe it gets better...) [y/n]");
             String input = inputReader.readDataFromConsoleToString();
             this.receiveInput = inputReader.exitInput(input);
         }

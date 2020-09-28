@@ -3,29 +3,18 @@ package exc;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputReader {
-    private static final Logger LOG = Logger.getLogger(Bestellung.class.getName());
-    private boolean receiveInput;
-    private final LinkedHashMap<Integer, Double> orderMap;
-    private double sum;
+    private static final Logger LOG = Logger.getLogger(InputReader.class.getName());
     BufferedReader bufferedReader;
-
 
     public double roundDouble(double value, int places) {
         double scale = Math.pow(10, places);
         return Math.round(value * scale) / scale;
-    }
-
-    public InputReader() {
-        receiveInput = true;
-        orderMap = new LinkedHashMap<>();
-        sum = 0;
     }
 
     /**
@@ -128,7 +117,7 @@ public class InputReader {
         try {
             return Double.parseDouble(input);
         } catch (NullPointerException | NumberFormatException exception) {
-            LOG.log(Level.SEVERE, "The format is wrong. Try to enter another price.");
+            LOG.log(Level.SEVERE, "The format is wrong. Try to enter another number.");
             exception.printStackTrace();
             return 0.0;
         }
@@ -144,7 +133,7 @@ public class InputReader {
         try {
             return Integer.parseInt(input);
         } catch (NullPointerException | NumberFormatException exception) {
-            LOG.log(Level.SEVERE, "The format is wrong or empty. Try to enter another amount.");
+            LOG.log(Level.SEVERE, "The format is wrong or empty. Try to enter another number.");
             exception.printStackTrace();
             return 0;
         }

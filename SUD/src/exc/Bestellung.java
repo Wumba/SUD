@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.util.LinkedHashMap;
 import java.util.logging.Logger;
 
-public class Bestellung {
+public class Bestellung implements UserInteractionViaConsole {
     private static final Logger LOG = Logger.getLogger(Bestellung.class.getName());
     private boolean receiveInput;
     private final LinkedHashMap<Integer, Double> orderMap;
@@ -54,7 +54,8 @@ public class Bestellung {
         this.sum = this.sum + aDouble;
     }
 
-    private void speakWithUser() {
+    @Override
+    public void speakWithUser() {
 
         System.out.println("WELCOME TO GIJA SHOP");
 
