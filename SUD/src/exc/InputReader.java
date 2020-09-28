@@ -10,11 +10,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputReader {
-    private static final Logger LOG = Logger.getLogger(Exc1.class.getName());
+    private static final Logger LOG = Logger.getLogger(Bestellung.class.getName());
     private boolean receiveInput;
     private final LinkedHashMap<Integer, Double> orderMap;
     private double sum;
     BufferedReader bufferedReader;
+
+
+    public double roundDouble(double value, int places) {
+        double scale = Math.pow(10, places);
+        return Math.round(value * scale) / scale;
+    }
 
     public InputReader() {
         receiveInput = true;
