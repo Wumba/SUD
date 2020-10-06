@@ -1,4 +1,7 @@
-package exc;
+package exc.LS02_6;
+
+import exc.talking.InputReader;
+import exc.talking.UserInteractionViaConsole;
 
 public class PublicTransportZone implements UserInteractionViaConsole {
     private boolean receiveInput;

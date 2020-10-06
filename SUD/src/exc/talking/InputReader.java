@@ -1,4 +1,4 @@
-package exc;
+package exc.talking;
 
 import java.io.BufferedReader;
 import java.io.IOException;

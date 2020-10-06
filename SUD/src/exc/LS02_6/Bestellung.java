@@ -1,4 +1,7 @@
-package exc;
+package exc.LS02_6;
+
+import exc.talking.InputReader;
+import exc.talking.UserInteractionViaConsole;
 
 import java.io.BufferedReader;
 import java.util.LinkedHashMap;
