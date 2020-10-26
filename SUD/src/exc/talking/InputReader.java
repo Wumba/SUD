@@ -129,6 +129,15 @@ public class InputReader {
         }
     }
 
+    public int readIntFromConsoleUntilValid() {
+        int inputAsInt = 0;
+        while (inputAsInt == 0) {
+            String inputAsString = this.readDataFromConsoleToString();
+            inputAsInt = this.checkAndParseIntegerInput(inputAsString);
+        }
+        return inputAsInt;
+    }
+
     /**
      * Parse String to Integer
      *
