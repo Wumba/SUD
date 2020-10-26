@@ -3,13 +3,13 @@ package exc.talking;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputReader {
-    private static final Logger LOG = Logger.getLogger(InputReader.class.getName());
+//    private static final Logger LOG = Logger.getLogger(InputReader.class.getName());
     BufferedReader bufferedReader;
 
     public double roundDouble(double value, int places) {
@@ -25,12 +25,11 @@ public class InputReader {
     public String readDataFromConsoleToString() {
         String output;
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        // todo: why does autoclosable not work? Why can't I close it at all?
         try {
             output = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
-            LOG.log(Level.SEVERE, "Something went wrong");
+            System.out.println("Something went wrong");
             output = "Error";
         }
         return output;
@@ -40,7 +39,7 @@ public class InputReader {
         try {
             bufferedReader.close();
         } catch (IOException exception) {
-            LOG.log(Level.SEVERE, "Reader can't be closed!");
+            System.out.println("Reader can't be closed!");
         }
     }
 
@@ -60,7 +59,7 @@ public class InputReader {
         Matcher withoutCommaAndDotMatcher = withoutCommaAndDot.matcher(input);
 
         if (input.isEmpty()) {
-            LOG.log(Level.SEVERE, "Please enter at least something!");
+            System.out.println("Please enter at least something!");
             return 0.0;
         } else {
             if (matcherPoint.find()) {
@@ -76,7 +75,7 @@ public class InputReader {
                 String doubleAsString = withoutCommaAndDotMatcher.group(0);
                 return parseStringToDouble(doubleAsString);
             } else {
-                LOG.log(Level.SEVERE, "Please enter a number.");
+                System.out.println("Please enter a number.");
                 return 0.0;
             }
         }
@@ -90,21 +89,28 @@ public class InputReader {
      * @return Integer
      */
     public int checkAndParseIntegerInput(String input) {
+        int output;
         if (input.isEmpty()) {
-            LOG.log(Level.SEVERE, "Please enter at least something!");
-            return 0;
+            System.out.println("Please enter at least something!");
+            output = 0;
         } else {
+
             Pattern intPattern = Pattern.compile("\\d+");
             Matcher intMatcher = intPattern.matcher(input);
-
             if (intMatcher.find()) {
-                String amountAsString = intMatcher.group(0);
-                return parseStringToInt(amountAsString);
+                String inputAsString = intMatcher.group(0);
+                output = this.parseStringToInt(inputAsString);
+
+                if (inputAsString.length() != input.length()) {
+                    System.out.println("The input \"" + input + "\" will be converted to \"" + inputAsString + "\"");
+                }
+
             } else {
-                LOG.log(Level.SEVERE, "Please enter a number.");
-                return 0;
+                System.out.println("Please enter a number.");
+                output = 0;
             }
         }
+        return output;
     }
 
     /**
@@ -117,7 +123,7 @@ public class InputReader {
         try {
             return Double.parseDouble(input);
         } catch (NullPointerException | NumberFormatException exception) {
-            LOG.log(Level.SEVERE, "The format is wrong. Try to enter another number.");
+            System.out.println("The format is wrong. Try to enter another number.");
             exception.printStackTrace();
             return 0.0;
         }
@@ -133,7 +139,7 @@ public class InputReader {
         try {
             return Integer.parseInt(input);
         } catch (NullPointerException | NumberFormatException exception) {
-            LOG.log(Level.SEVERE, "The format is wrong or empty. Try to enter another number.");
+            System.out.println("The format is wrong or empty. Try to enter another number.");
             exception.printStackTrace();
             return 0;
         }

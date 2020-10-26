@@ -12,7 +12,6 @@ public class Bestellung implements UserInteractionViaConsole {
     private boolean receiveInput;
     private final LinkedHashMap<Integer, Double> orderMap;
     private double sum;
-    BufferedReader bufferedReader;
     InputReader inputReader;
 
     public Bestellung() {
