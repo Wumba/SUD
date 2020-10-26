@@ -1,23 +1,26 @@
 package exc.LS02_9;
-
 import exc.talking.*;
 
-import java.sql.SQLOutput;
 
 public class LS02_Teiler implements UserInteractionViaConsole {
     InputReader inputReader = new InputReader();
 
     @Override
     public void speakWithUser() {
-        System.out.println("Please enter a number.");
-        int inputAsInt = 0;
-        while (inputAsInt == 0) {
-            String inputAsString = inputReader.readDataFromConsoleToString();
-            inputAsInt = inputReader.checkAndParseIntegerInput(inputAsString);
+        boolean contiuneInput = true;
+        while (contiuneInput) {
+            System.out.println("Please enter a number.");
+            int inputAsInt = 0;
+            while (inputAsInt == 0) {
+                String inputAsString = inputReader.readDataFromConsoleToString();
+                inputAsInt = inputReader.checkAndParseIntegerInput(inputAsString);
+            }
+            System.out.println(this.divideAndConquer(inputAsInt).toString());
+            System.out.println("Want to run again? Type \"no\" for exit.");
+            String exitString = inputReader.readDataFromConsoleToString();
+            contiuneInput = inputReader.exitInput(exitString);
         }
-        System.out.println(this.divideAndConquer(inputAsInt).toString());
-        System.out.println("Want to run again? [y/n]");
-        inputReader.readDataFromConsoleToString()
+        inputReader.closeReader();
     }
 
     public StringBuilder divideAndConquer(int input) {
