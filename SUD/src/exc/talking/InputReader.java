@@ -51,9 +51,9 @@ public class InputReader {
      * @return Double
      */
     public double checkAndParseDoubleInput(String input) {
-        Pattern doublePoint = Pattern.compile("\\d+\\.\\d+");
-        Pattern doubleComma = Pattern.compile("\\d+\\,\\d+");
-        Pattern withoutCommaAndDot = Pattern.compile("\\d+");
+        Pattern doublePoint = Pattern.compile("-?\\d+\\.\\d+");
+        Pattern doubleComma = Pattern.compile("-?\\d+\\,\\d+");
+        Pattern withoutCommaAndDot = Pattern.compile("-?\\d+");
         Matcher matcherPoint = doublePoint.matcher(input);
         Matcher matcherComma = doubleComma.matcher(input);
         Matcher withoutCommaAndDotMatcher = withoutCommaAndDot.matcher(input);
@@ -138,6 +138,15 @@ public class InputReader {
         return inputAsInt;
     }
 
+    public double readDoubleFromConsoleUntilValid() {
+        double inputAsDouble = 0;
+        while (inputAsDouble == 0) {
+            String inputAsString = this.readDataFromConsoleToString();
+            inputAsDouble = this.checkAndParseDoubleInput(inputAsString);
+        }
+        return inputAsDouble;
+    }
+
     /**
      * Parse String to Integer
      *
@@ -166,7 +175,12 @@ public class InputReader {
             default:
                 return true;
         }
+    }
 
+    public boolean checkRunAgain() {
+        System.out.println("Want to run again? \n Type \"no\" for exit. \n Press enter to proceed.");
+        String exitString = readDataFromConsoleToString();
+        return exitInput(exitString);
     }
 }
 
