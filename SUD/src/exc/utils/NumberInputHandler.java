@@ -1,4 +1,4 @@
-package exc.talking;
+package exc.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,9 +8,10 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InputReader {
+public class NumberInputHandler {
 //    private static final Logger LOG = Logger.getLogger(InputReader.class.getName());
     BufferedReader bufferedReader;
+
 
     public double roundDouble(double value, int places) {
         double scale = Math.pow(10, places);
@@ -113,6 +114,31 @@ public class InputReader {
         return output;
     }
 
+    public long checkAndParseLongInput(String input) {
+        long output;
+        if (input.isEmpty()) {
+            System.out.println("Please enter at least something!");
+            output = 0;
+        } else {
+
+            Pattern intPattern = Pattern.compile("\\d+");
+            Matcher intMatcher = intPattern.matcher(input);
+            if (intMatcher.find()) {
+                String inputAsString = intMatcher.group(0);
+                output = this.parseStringToLong(inputAsString);
+
+                if (inputAsString.length() != input.length()) {
+                    System.out.println("The input \"" + input + "\" will be converted to \"" + inputAsString + "\"");
+                }
+
+            } else {
+                System.out.println("Please enter a number.");
+                output = 0;
+            }
+        }
+        return output;
+    }
+
     /**
      * Parse String to Double
      *
@@ -128,6 +154,16 @@ public class InputReader {
             return 0.0;
         }
     }
+
+    public long readLongFromConsoleUntilValid() {
+        int inputAsLong = 0;
+        while (inputAsLong == 0) {
+            String inputAsString = this.readDataFromConsoleToString();
+            inputAsLong = this.checkAndParseIntegerInput(inputAsString);
+        }
+        return inputAsLong;
+    }
+
 
     public int readIntFromConsoleUntilValid() {
         int inputAsInt = 0;
@@ -163,6 +199,16 @@ public class InputReader {
         }
     }
 
+    private long parseStringToLong(String input) {
+        try {
+            return Long.parseLong(input);
+        } catch (NullPointerException | NumberFormatException exception) {
+            System.out.println("The format is wrong or empty. Try to enter another number.");
+            exception.printStackTrace();
+            return 0;
+        }
+    }
+
     public boolean exitInput(String input) {
         switch (input) {
             case "no":
@@ -177,6 +223,10 @@ public class InputReader {
         }
     }
 
+    /**
+     * Checks if the user want to run again through the defined method
+     * @return boolean
+     */
     public boolean checkRunAgain() {
         System.out.println("Want to run again? \n Type \"no\" for exit. \n Press enter to proceed.");
         String exitString = readDataFromConsoleToString();

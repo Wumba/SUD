@@ -1,17 +1,17 @@
 package exc.LS02_6;
 
 
-import exc.talking.InputReader;
-import exc.talking.UserInteractionViaConsole;
+import exc.utils.NumberInputHandler;
+import exc.utils.UserInteractionViaConsole;
 
 public class BMI implements UserInteractionViaConsole {
 
     private boolean receiveInput;
-    private final InputReader inputReader;
+    private final NumberInputHandler numberInputHandler;
 
     public BMI() {
         receiveInput = true;
-        inputReader = new InputReader();
+        numberInputHandler = new NumberInputHandler();
     }
 
 
@@ -23,7 +23,7 @@ public class BMI implements UserInteractionViaConsole {
      */
     private double calculateBMI(double height, double weight) {
         double result = (weight / Math.pow(height, height));
-        return inputReader.roundDouble(result, 2);
+        return numberInputHandler.roundDouble(result, 2);
     }
 
     private BMIResultPair checkBMIResult(double bmiResult) {
@@ -63,22 +63,22 @@ public class BMI implements UserInteractionViaConsole {
 
             while (heightData == 0.0) {
                 System.out.println("Please enter your height in meter:");
-                String data1 = inputReader.readDataFromConsoleToString();
-                heightData = inputReader.checkAndParseDoubleInput(data1);
+                String data1 = numberInputHandler.readDataFromConsoleToString();
+                heightData = numberInputHandler.checkAndParseDoubleInput(data1);
             }
 
             while (weightData == 0.0) {
                 System.out.println("Please enter your weight in kg:");
-                String data2 = inputReader.readDataFromConsoleToString();
-                weightData = inputReader.checkAndParseDoubleInput(data2);
+                String data2 = numberInputHandler.readDataFromConsoleToString();
+                weightData = numberInputHandler.checkAndParseDoubleInput(data2);
             }
             result = calculateBMI(heightData, weightData);
             System.out.println("Your BMI is " + result + " kg/m^2");
             System.out.println(checkBMIResult(result).getAnswer());
             System.out.println("You should eat " + checkBMIResult(result).getCaloriesAllowed() + " kcal per day.");
             System.out.println("Want to calculate again? (maybe it gets better...) [y/n]");
-            String input = inputReader.readDataFromConsoleToString();
-            this.receiveInput = inputReader.exitInput(input);
+            String input = numberInputHandler.readDataFromConsoleToString();
+            this.receiveInput = numberInputHandler.exitInput(input);
         }
     }
 

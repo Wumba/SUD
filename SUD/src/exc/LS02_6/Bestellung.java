@@ -1,9 +1,8 @@
 package exc.LS02_6;
 
-import exc.talking.InputReader;
-import exc.talking.UserInteractionViaConsole;
+import exc.utils.NumberInputHandler;
+import exc.utils.UserInteractionViaConsole;
 
-import java.io.BufferedReader;
 import java.util.LinkedHashMap;
 import java.util.logging.Logger;
 
@@ -12,13 +11,13 @@ public class Bestellung implements UserInteractionViaConsole {
     private boolean receiveInput;
     private final LinkedHashMap<Integer, Double> orderMap;
     private double sum;
-    InputReader inputReader;
+    NumberInputHandler numberInputHandler;
 
     public Bestellung() {
         receiveInput = true;
         orderMap = new LinkedHashMap<>();
         sum = 0;
-        inputReader = new InputReader();
+        numberInputHandler = new NumberInputHandler();
     }
 
 
@@ -67,23 +66,23 @@ public class Bestellung implements UserInteractionViaConsole {
 
             while(intData == 0) {
                 System.out.println("Please enter the amount of items:");
-                String data = inputReader.readDataFromConsoleToString();
-                intData = inputReader.checkAndParseIntegerInput(data);
+                String data = numberInputHandler.readDataFromConsoleToString();
+                intData = numberInputHandler.checkAndParseIntegerInput(data);
             }
 
             while(doubleData == 0) {
                 System.out.println("Please enter the belonging price for a single item.");
-                String data2 = inputReader.readDataFromConsoleToString();
-                doubleData = inputReader.checkAndParseDoubleInput(data2);
+                String data2 = numberInputHandler.readDataFromConsoleToString();
+                doubleData = numberInputHandler.checkAndParseDoubleInput(data2);
             }
             writeToMap(intData, doubleData);
 
             System.out.println("Would you like to enter another article? [y/n]");
-            String data3 = inputReader.readDataFromConsoleToString();
-            this.receiveInput = inputReader.exitInput(data3);
+            String data3 = numberInputHandler.readDataFromConsoleToString();
+            this.receiveInput = numberInputHandler.exitInput(data3);
         }
         printTheMap();
-        inputReader.closeReader();
+        numberInputHandler.closeReader();
     }
 
     public static void main(String[] args) {

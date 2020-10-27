@@ -1,14 +1,14 @@
 package exc.LS02_6;
 
-import exc.talking.InputReader;
-import exc.talking.UserInteractionViaConsole;
+import exc.utils.NumberInputHandler;
+import exc.utils.UserInteractionViaConsole;
 
 public class PublicTransportZone implements UserInteractionViaConsole {
     private boolean receiveInput;
-    private final InputReader inputReader;
+    private final NumberInputHandler numberInputHandler;
 
     public PublicTransportZone() {
-        inputReader = new InputReader();
+        numberInputHandler = new NumberInputHandler();
         receiveInput = true;
     }
 
@@ -66,14 +66,14 @@ public class PublicTransportZone implements UserInteractionViaConsole {
             int busZone = 0;
             while (busZone == 0) {
                 System.out.println("Please enter the wished zone as a number. [1-10].");
-                String data = inputReader.readDataFromConsoleToString();
-                busZone = inputReader.checkAndParseIntegerInput(data);
+                String data = numberInputHandler.readDataFromConsoleToString();
+                busZone = numberInputHandler.checkAndParseIntegerInput(data);
             }
             String numberAsWord = transferIntegerToWord(busZone);
             System.out.println("Input Zone: " + busZone + "; Output Zone: " + numberAsWord);
             System.out.println("Would you like to go again? [y/n]");
-            String input = inputReader.readDataFromConsoleToString();
-            this.receiveInput = inputReader.exitInput(input);
+            String input = numberInputHandler.readDataFromConsoleToString();
+            this.receiveInput = numberInputHandler.exitInput(input);
         }
     }
 

@@ -1,9 +1,9 @@
 package exc.LS02_9;
-import exc.talking.*;
+import exc.utils.*;
 
 
 public class LS02_Teiler implements UserInteractionViaConsole {
-    InputReader inputReader = new InputReader();
+    NumberInputHandler numberInputHandler = new NumberInputHandler();
 
     @Override
     public void speakWithUser() {
@@ -12,15 +12,15 @@ public class LS02_Teiler implements UserInteractionViaConsole {
             System.out.println("Please enter a number.");
             int inputAsInt = 0;
             while (inputAsInt == 0) {
-                String inputAsString = inputReader.readDataFromConsoleToString();
-                inputAsInt = inputReader.checkAndParseIntegerInput(inputAsString);
+                String inputAsString = numberInputHandler.readDataFromConsoleToString();
+                inputAsInt = numberInputHandler.checkAndParseIntegerInput(inputAsString);
             }
             System.out.println(this.divideAndConquer(inputAsInt).toString());
             System.out.println("Want to run again? Type \"no\" for exit.");
-            String exitString = inputReader.readDataFromConsoleToString();
-            contiuneInput = inputReader.exitInput(exitString);
+            String exitString = numberInputHandler.readDataFromConsoleToString();
+            contiuneInput = numberInputHandler.exitInput(exitString);
         }
-        inputReader.closeReader();
+        numberInputHandler.closeReader();
     }
 
     public StringBuilder divideAndConquer(int input) {
