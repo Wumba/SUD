@@ -1,7 +1,7 @@
-package exc.LS02_9;
+package exercises.LS02_9;
 
-import exc.utils.NumberInputHandler;
-import exc.utils.UserInteractionViaConsole;
+import exercises.utils.NumberInputHandler;
+import exercises.utils.UserInteractionViaConsole;
 
 public class LS02_Primzahlen implements UserInteractionViaConsole {
     NumberInputHandler numberInputHandler = new NumberInputHandler();

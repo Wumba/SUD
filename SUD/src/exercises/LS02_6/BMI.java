@@ -1,8 +1,8 @@
-package exc.LS02_6;
+package exercises.LS02_6;
 
 
-import exc.utils.NumberInputHandler;
-import exc.utils.UserInteractionViaConsole;
+import exercises.utils.NumberInputHandler;
+import exercises.utils.UserInteractionViaConsole;
 
 public class BMI implements UserInteractionViaConsole {
 

@@ -1,4 +1,4 @@
-package exc.LS02_6;
+package exercises.LS02_6;
 
 public class BMIResultPair {
     private String answer;

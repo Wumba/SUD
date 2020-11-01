@@ -1,5 +1,5 @@
-package exc.LS02_9;
-import exc.utils.*;
+package exercises.LS02_9;
+import exercises.utils.*;
 
 
 public class LS02_Teiler implements UserInteractionViaConsole {
