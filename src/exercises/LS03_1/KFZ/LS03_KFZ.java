@@ -1,4 +1,4 @@
-package exercises.LS03_1;
+package exercises.LS03_1.KFZ;
 
 public class LS03_KFZ {
     private static final String VALID_INTERVAL = "Please enter something between 0 and ";
@@ -15,6 +15,7 @@ public class LS03_KFZ {
 
 
     public LS03_KFZ() {
+        System.out.println("Dieter");
     }
 
     public LS03_KFZ(int seatsNumber, double fuelTankVolume, double maxSpeed, double price) {
@@ -33,7 +34,7 @@ public class LS03_KFZ {
         if (seatsNumber >= 0) {
             this.seatsNumber = seatsNumber;
         } else {
-            System.out.println(HIGHER_THAN_ZERO);
+            throw new IllegalArgumentException(HIGHER_THAN_ZERO);
         }
     }
 
@@ -45,7 +46,7 @@ public class LS03_KFZ {
         if (personsInCar <= seatsNumber && personsInCar >= 0) {
             this.personsInCar = personsInCar;
         } else {
-            System.out.println(VALID_INTERVAL + seatsNumber);
+            throw new IllegalArgumentException(VALID_INTERVAL + seatsNumber);
         }
         this.personsInCar = personsInCar;
     }
@@ -58,7 +59,7 @@ public class LS03_KFZ {
         if (fuelTankVolume >= 0) {
             this.fuelTankVolume = fuelTankVolume;
         } else {
-            System.out.println(HIGHER_THAN_ZERO);
+            throw new IllegalArgumentException(HIGHER_THAN_ZERO);
         }
     }
 
@@ -70,7 +71,7 @@ public class LS03_KFZ {
         if (fuelInTank >= fuelTankVolume && fuelInTank >= 0) {
             this.fuelInTank = fuelInTank;
         } else {
-            System.out.println(VALID_INTERVAL + fuelTankVolume);
+            throw new IllegalArgumentException(VALID_INTERVAL + fuelTankVolume);
         }
 
     }
@@ -83,7 +84,7 @@ public class LS03_KFZ {
         if (fuelInTank >= 0) {
             this.maxSpeed = maxSpeed;
         } else {
-            System.out.println(HIGHER_THAN_ZERO);
+            throw new IllegalArgumentException(HIGHER_THAN_ZERO);
         }
     }
 
@@ -95,9 +96,8 @@ public class LS03_KFZ {
         if (currentSpeed <= maxSpeed && currentSpeed >= 0) {
             this.currentSpeed = currentSpeed;
         } else {
-            System.out.println(VALID_INTERVAL + maxSpeed);
+            throw new IllegalArgumentException(VALID_INTERVAL + maxSpeed);
         }
-
     }
 
     public double getPrice() {
@@ -105,15 +105,19 @@ public class LS03_KFZ {
     }
 
     public void setPrice(double price) {
-        if (fuelInTank >= 0) {
+        if (price >= 0) {
             this.price = price;
         } else {
-            System.out.println(HIGHER_THAN_ZERO);
+            throw new IllegalArgumentException(HIGHER_THAN_ZERO);
         }
-        this.price = price;
     }
 
     public void pumpTheBreaks() {
+        this.setCurrentSpeed(0);
+        System.out.println("Teased speed has stopped.");
+    }
+
+    public void decelerate() {
         this.setCurrentSpeed(this.currentSpeed - 10);
         System.out.println("The vehicle has decreased speed by 10 kmh.");
     }
@@ -123,24 +127,24 @@ public class LS03_KFZ {
         System.out.println("The vehicle has increased speed by 10 kmh.");
     }
 
-    public void drive() {
+    public void driveAtMaxSpeed() {
         setCurrentSpeed(maxSpeed);
         System.out.println("The vehicle is no driving at max speed until it reaches its destination");
     }
 
-    public void getOut(int amountPersonsToStepOutOfCar) {
+    public void leaveVehicle(int amountPersonsToStepOutOfCar) {
         if (currentSpeed == 0) {
             setPersonsInCar(seatsNumber - amountPersonsToStepOutOfCar);
         } else {
-            System.out.println(STOP_CAR);
+            throw new IllegalArgumentException(STOP_CAR);
         }
     }
 
-    public void getIn(int amountPersonsToStepIntoCar) {
+    public void enterVehicle(int amountPersonsToStepIntoCar) {
         if (currentSpeed == 0) {
             setPersonsInCar(amountPersonsToStepIntoCar);
         } else {
-            System.out.println(STOP_CAR);
+            throw new IllegalArgumentException(STOP_CAR);
 
         }
     }
@@ -150,7 +154,7 @@ public class LS03_KFZ {
         System.out.println("The fuel tank has been filled to its full volume.");
     }
 
-    public void printStaticValues() {
+    private String printStaticValues() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder
                 .append("The vehicle has the following properties: ").append("\n")
@@ -158,21 +162,27 @@ public class LS03_KFZ {
                 .append("Volume of Fuel Tank: ").append(fuelTankVolume).append("\n")
                 .append("Max Speed: ").append(maxSpeed).append("\n")
                 .append("Price: ").append(price).append("\n");
-        System.out.println(stringBuilder);
+        return stringBuilder.toString();
     }
 
-    public void printDynamicValues() {
+    private String printDynamicValues() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder
                 .append("The status of the vehicle is: ").append("\n")
                 .append("Number of persons: ").append(personsInCar).append("\n")
                 .append("Amount of fuel in the tank: ").append(fuelInTank).append("\n")
                 .append("Current Speed: ").append(currentSpeed).append("\n");
-        System.out.println(stringBuilder);
+        return stringBuilder.toString();
     }
 
-    public static void main(String[] args) {
-
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder
+                .append(printStaticValues())
+                .append("\n")
+                .append(printDynamicValues());
+        return stringBuilder.toString();
     }
 }
 
