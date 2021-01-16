@@ -1,6 +1,6 @@
 package exercises.LS03_3;
 
-class Circle {
+class Circle extends GeometricForm {
     private double radius;
 
     public double getRadius() {
@@ -16,13 +16,15 @@ class Circle {
     }
 
     public Circle(double radius) {
-        this.radius = radius;
+        setRadius(radius);
     }
 
+    @Override
     public double circumference() {
         return radius*2;
     }
 
+    @Override
     public double area() {
         return 2*Math.PI*radius;
     }

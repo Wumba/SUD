@@ -5,6 +5,11 @@ public class Rectangle extends GeometricForm {
     private double width;
     private double length;
 
+    public Rectangle(double length, double width) {
+        setLength(length);
+        setWidth(width);
+    }
+
     public double getWidth() {
         return width;
     }
@@ -28,6 +33,7 @@ public class Rectangle extends GeometricForm {
             throw new IllegalArgumentException("length must be over 0");
         }
     }
+
 
 
     @Override
