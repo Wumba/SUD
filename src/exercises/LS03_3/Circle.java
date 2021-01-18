@@ -8,11 +8,7 @@ class Circle extends GeometricForm {
     }
 
     public void setRadius(double radius) {
-        if (radius > 0) {
-            this.radius = radius;
-        } else {
-            throw new IllegalArgumentException("Radius must be above 0");
-        }
+    this.radius = checkNotNull(radius);
     }
 
     public Circle(double radius) {
@@ -21,11 +17,11 @@ class Circle extends GeometricForm {
 
     @Override
     public double circumference() {
-        return radius*2;
+        return 2*Math.PI*radius;
     }
 
     @Override
     public double area() {
-        return 2*Math.PI*radius;
+        return Math.PI * Math.pow(radius,2);
     }
 }

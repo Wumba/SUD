@@ -3,29 +3,42 @@ package exercises.LS03_3;
 public class Dot {
     private double x;
     private double y;
+    private final int lowerBorder = -100;
+    private final int upperBorder = 100;
+    private final String errorMessage = "value must be between " + lowerBorder + " and "  + upperBorder;
+
 
     public double getX() {
         return x;
-    }
-
-    public void setX(double x) {
-        if (x <= 0 && x <= 100) {
-            this.x = x;
-        } else {
-            throw new IllegalArgumentException("x value must be between 0 and 100");
-        }
     }
 
     public double getY() {
         return y;
     }
 
+    public void setX(double x) {
+        if (checkBorder(x)) {
+            this.x = x;
+        } else {
+            throw new IllegalArgumentException("x " + errorMessage);
+        }
+    }
+
     public void setY(double y) {
-        if (y <= 0 && y <= 100) {
+        if (checkBorder(y)) {
             this.y = y;
         } else {
-            throw new IllegalArgumentException("y value must be between 0 and 100");
+            throw new IllegalArgumentException("y " + errorMessage);
         }
+    }
+
+    public Dot() {
+        this.x = 0;
+        this.y = 0;
+    }
+
+    private boolean checkBorder(double value) {
+        return value >= lowerBorder && value <= upperBorder;
     }
 
     public void moveDot(double x, double y) {
@@ -35,5 +48,16 @@ public class Dot {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "[" + x + "|" + y + "]";
+    }
+
+    public static void main(String[] args) {
+        Dot dot = new Dot();
+        dot.moveDot(234, 34);
+        System.out.println(dot);
     }
 }
