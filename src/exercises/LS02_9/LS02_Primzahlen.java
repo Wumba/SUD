@@ -1,10 +1,10 @@
 package exercises.LS02_9;
 
-import exercises.utils.NumberInputHandler;
-import exercises.utils.UserInteractionViaConsole;
+import exercises.utils.UserInteractionInputHandler;
+import exercises.utils.IUserInteractionViaConsole;
 
-public class LS02_Primzahlen implements UserInteractionViaConsole {
-    NumberInputHandler numberInputHandler = new NumberInputHandler();
+public class LS02_Primzahlen implements IUserInteractionViaConsole {
+    UserInteractionInputHandler userInteractionInputHandler = new UserInteractionInputHandler();
 
     @Override
     public void speakWithUser() {
@@ -13,13 +13,13 @@ public class LS02_Primzahlen implements UserInteractionViaConsole {
 
         do {
             System.out.println("Please enter a whole number to check.");
-            long inputNumber = numberInputHandler.readLongFromConsoleUntilValid();
+            long inputNumber = userInteractionInputHandler.readLongFromConsoleUntilValid();
             if(checkIfPrimeNumber(inputNumber)) {
                 System.out.println(inputNumber + " is a prime number.");
             } else {
                 System.out.println(inputNumber + " is not a prime number.");
             }
-            repeat = numberInputHandler.checkRunAgain();
+            repeat = userInteractionInputHandler.checkRunAgain();
         } while (repeat);
     }
 

@@ -1,14 +1,15 @@
 package exercises.LS02_6;
 
-import exercises.utils.NumberInputHandler;
-import exercises.utils.UserInteractionViaConsole;
+import exercises.utils.UserInteractionInputHandler;
+import exercises.utils.IUserInteractionViaConsole;
+import exercises.utils.numberInputHandler.IntegerInputHandler;
 
-public class PublicTransportZone implements UserInteractionViaConsole {
+public class PublicTransportZone implements IUserInteractionViaConsole {
     private boolean receiveInput;
-    private final NumberInputHandler numberInputHandler;
+    private final UserInteractionInputHandler userInteractionInputHandler;
 
     public PublicTransportZone() {
-        numberInputHandler = new NumberInputHandler();
+        userInteractionInputHandler = new UserInteractionInputHandler();
         receiveInput = true;
     }
 
@@ -65,15 +66,16 @@ public class PublicTransportZone implements UserInteractionViaConsole {
         while (receiveInput) {
             int busZone = 0;
             while (busZone == 0) {
+                IntegerInputHandler integerInputHandler = new IntegerInputHandler();
                 System.out.println("Please enter the wished zone as a number. [1-10].");
-                String data = numberInputHandler.readDataFromConsoleToString();
-                busZone = numberInputHandler.checkAndParseIntegerInput(data);
+                String data = userInteractionInputHandler.readDataFromConsoleToString();
+                busZone = integerInputHandler.checkAndParseIntegerInput(data);
             }
             String numberAsWord = transferIntegerToWord(busZone);
             System.out.println("Input Zone: " + busZone + "; Output Zone: " + numberAsWord);
             System.out.println("Would you like to go again? [y/n]");
-            String input = numberInputHandler.readDataFromConsoleToString();
-            this.receiveInput = numberInputHandler.exitInput(input);
+            String input = userInteractionInputHandler.readDataFromConsoleToString();
+            this.receiveInput = userInteractionInputHandler.exitInput(input);
         }
     }
 

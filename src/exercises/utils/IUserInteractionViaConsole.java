@@ -1,5 +1,5 @@
 package exercises.utils;
 
-public interface UserInteractionViaConsole {
+public interface IUserInteractionViaConsole {
     void speakWithUser();
 }

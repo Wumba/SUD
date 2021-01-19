@@ -1,23 +1,25 @@
 package exercises.LS02_6;
 
-import exercises.utils.NumberInputHandler;
-import exercises.utils.UserInteractionViaConsole;
+import exercises.utils.UserInteractionInputHandler;
+import exercises.utils.IUserInteractionViaConsole;
+import exercises.utils.numberInputHandler.DoubleInputHandler;
+import exercises.utils.numberInputHandler.IntegerInputHandler;
 
 import java.util.LinkedHashMap;
 import java.util.logging.Logger;
 
-public class Bestellung implements UserInteractionViaConsole {
+public class Bestellung implements IUserInteractionViaConsole {
     private static final Logger LOG = Logger.getLogger(Bestellung.class.getName());
     private boolean receiveInput;
     private final LinkedHashMap<Integer, Double> orderMap;
     private double sum;
-    NumberInputHandler numberInputHandler;
+    UserInteractionInputHandler userInteractionInputHandler;
 
     public Bestellung() {
         receiveInput = true;
         orderMap = new LinkedHashMap<>();
         sum = 0;
-        numberInputHandler = new NumberInputHandler();
+        userInteractionInputHandler = new UserInteractionInputHandler();
     }
 
 
@@ -65,24 +67,26 @@ public class Bestellung implements UserInteractionViaConsole {
             double doubleData = 0.0;
 
             while(intData == 0) {
+                IntegerInputHandler integerInputHandler = new IntegerInputHandler();
                 System.out.println("Please enter the amount of items:");
-                String data = numberInputHandler.readDataFromConsoleToString();
-                intData = numberInputHandler.checkAndParseIntegerInput(data);
+                String data = userInteractionInputHandler.readDataFromConsoleToString();
+                intData = integerInputHandler.checkAndParseIntegerInput(data);
             }
 
             while(doubleData == 0) {
+                DoubleInputHandler doubleInputHandler = new DoubleInputHandler();
                 System.out.println("Please enter the belonging price for a single item.");
-                String data2 = numberInputHandler.readDataFromConsoleToString();
-                doubleData = numberInputHandler.checkAndParseDoubleInput(data2);
+                String data2 = userInteractionInputHandler.readDataFromConsoleToString();
+                doubleData = doubleInputHandler.checkAndParseDoubleInput(data2);
             }
             writeToMap(intData, doubleData);
 
             System.out.println("Would you like to enter another article? [y/n]");
-            String data3 = numberInputHandler.readDataFromConsoleToString();
-            this.receiveInput = numberInputHandler.exitInput(data3);
+            String data3 = userInteractionInputHandler.readDataFromConsoleToString();
+            this.receiveInput = userInteractionInputHandler.exitInput(data3);
         }
         printTheMap();
-        numberInputHandler.closeReader();
+        userInteractionInputHandler.closeReader();
     }
 
     public static void main(String[] args) {

@@ -1,9 +1,10 @@
 package exercises.LS02_9;
 import exercises.utils.*;
+import exercises.utils.numberInputHandler.IntegerInputHandler;
 
 
-public class LS02_Teiler implements UserInteractionViaConsole {
-    NumberInputHandler numberInputHandler = new NumberInputHandler();
+public class LS02_Teiler implements IUserInteractionViaConsole {
+    UserInteractionInputHandler userInteractionInputHandler = new UserInteractionInputHandler();
 
     @Override
     public void speakWithUser() {
@@ -12,15 +13,16 @@ public class LS02_Teiler implements UserInteractionViaConsole {
             System.out.println("Please enter a number.");
             int inputAsInt = 0;
             while (inputAsInt == 0) {
-                String inputAsString = numberInputHandler.readDataFromConsoleToString();
-                inputAsInt = numberInputHandler.checkAndParseIntegerInput(inputAsString);
+                IntegerInputHandler integerInputHandler = new IntegerInputHandler();
+                String inputAsString = userInteractionInputHandler.readDataFromConsoleToString();
+                inputAsInt = integerInputHandler.checkAndParseIntegerInput(inputAsString);
             }
             System.out.println(this.divideAndConquer(inputAsInt).toString());
             System.out.println("Want to run again? Type \"no\" for exit.");
-            String exitString = numberInputHandler.readDataFromConsoleToString();
-            contiuneInput = numberInputHandler.exitInput(exitString);
+            String exitString = userInteractionInputHandler.readDataFromConsoleToString();
+            contiuneInput = userInteractionInputHandler.exitInput(exitString);
         }
-        numberInputHandler.closeReader();
+        userInteractionInputHandler.closeReader();
     }
 
     public StringBuilder divideAndConquer(int input) {

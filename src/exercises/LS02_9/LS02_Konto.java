@@ -1,10 +1,12 @@
 package exercises.LS02_9;
 
-import exercises.utils.NumberInputHandler;
-import exercises.utils.UserInteractionViaConsole;
+import exercises.utils.UserInteractionInputHandler;
+import exercises.utils.IUserInteractionViaConsole;
 
-public class LS02_Konto implements UserInteractionViaConsole {
-    NumberInputHandler numberInputHandler = new NumberInputHandler();
+import static exercises.utils.numberInputHandler.DoubleInputHandler.roundDouble;
+
+public class LS02_Konto implements IUserInteractionViaConsole {
+    UserInteractionInputHandler userInteractionInputHandler = new UserInteractionInputHandler();
     double overdraft;
     double currentAssets = 1000.00;
 
@@ -25,39 +27,40 @@ public class LS02_Konto implements UserInteractionViaConsole {
         System.out.println("Enter the overdraft credit  for your account");
 
         do {
-            this.setOverdraft(numberInputHandler.readDoubleFromConsoleUntilValid());
+            this.setOverdraft(userInteractionInputHandler.readDoubleFromConsoleUntilValid());
         } while (this.overdraft == 0);
 
         System.out.println("Overdraft credit: " + this.overdraft);
         while (contiuneInput ) {
             System.out.println("How much money do you want to withdraw?");
-            double widthDraw = numberInputHandler.readDoubleFromConsoleUntilValid();
+            double widthDraw = userInteractionInputHandler.readDoubleFromConsoleUntilValid();
             calculateAndBookWithdraw(widthDraw);
             if (overdraft == currentAssets){
                 contiuneInput = false;
             } else {
-                contiuneInput = numberInputHandler.checkRunAgain();
+                contiuneInput = userInteractionInputHandler.checkRunAgain();
             }
         }
         System.out.println("Thanks for using GIJA Bank. Have a nice day!");
-        numberInputHandler.closeReader();
+        userInteractionInputHandler.closeReader();
     }
 
     private void calculateAndBookWithdraw(double withdraw) {
         if (withdraw > 0) {
             double result = this.currentAssets - withdraw;
             if (result >= this.overdraft) {
-                this.currentAssets = numberInputHandler.roundDouble(result, 2);
+                this.currentAssets = roundDouble(result, 2);
                 System.out.println("New balance:  " + this.currentAssets);
             } else {
                 double moneyLeft = this.currentAssets - this.overdraft;
-                moneyLeft = numberInputHandler.roundDouble(moneyLeft, 2);
+                moneyLeft = roundDouble(moneyLeft, 2);
                 System.out.println("You reached your limit! Try an amount smaller than " + moneyLeft);
             }
         } else {
             System.out.println("You are funny, you can't withdraw negative money!");
         }
     }
+    
 
 
     public static void main(String[] args) {

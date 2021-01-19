@@ -1,17 +1,20 @@
 package exercises.LS02_6;
 
 
-import exercises.utils.NumberInputHandler;
-import exercises.utils.UserInteractionViaConsole;
+import exercises.utils.UserInteractionInputHandler;
+import exercises.utils.IUserInteractionViaConsole;
+import exercises.utils.numberInputHandler.DoubleInputHandler;
 
-public class BMI implements UserInteractionViaConsole {
+import static exercises.utils.numberInputHandler.DoubleInputHandler.roundDouble;
+
+public class BMI implements IUserInteractionViaConsole {
 
     private boolean receiveInput;
-    private final NumberInputHandler numberInputHandler;
+    private final UserInteractionInputHandler userInteractionInputHandler;
 
     public BMI() {
         receiveInput = true;
-        numberInputHandler = new NumberInputHandler();
+        userInteractionInputHandler = new UserInteractionInputHandler();
     }
 
 
@@ -23,7 +26,7 @@ public class BMI implements UserInteractionViaConsole {
      */
     private double calculateBMI(double height, double weight) {
         double result = (weight / Math.pow(height, height));
-        return numberInputHandler.roundDouble(result, 2);
+        return roundDouble(result, 2);
     }
 
     private BMIResultPair checkBMIResult(double bmiResult) {
@@ -62,23 +65,25 @@ public class BMI implements UserInteractionViaConsole {
             double result;
 
             while (heightData == 0.0) {
+                DoubleInputHandler doubleInputHandler = new DoubleInputHandler();
                 System.out.println("Please enter your height in meter:");
-                String data1 = numberInputHandler.readDataFromConsoleToString();
-                heightData = numberInputHandler.checkAndParseDoubleInput(data1);
+                String data1 = userInteractionInputHandler.readDataFromConsoleToString();
+                heightData = doubleInputHandler.checkAndParseDoubleInput(data1);
             }
 
             while (weightData == 0.0) {
+                DoubleInputHandler doubleInputHandler = new DoubleInputHandler();
                 System.out.println("Please enter your weight in kg:");
-                String data2 = numberInputHandler.readDataFromConsoleToString();
-                weightData = numberInputHandler.checkAndParseDoubleInput(data2);
+                String data2 = userInteractionInputHandler.readDataFromConsoleToString();
+                weightData = doubleInputHandler.checkAndParseDoubleInput(data2);
             }
             result = calculateBMI(heightData, weightData);
             System.out.println("Your BMI is " + result + " kg/m^2");
             System.out.println(checkBMIResult(result).getAnswer());
             System.out.println("You should eat " + checkBMIResult(result).getCaloriesAllowed() + " kcal per day.");
             System.out.println("Want to calculate again? (maybe it gets better...) [y/n]");
-            String input = numberInputHandler.readDataFromConsoleToString();
-            this.receiveInput = numberInputHandler.exitInput(input);
+            String input = userInteractionInputHandler.readDataFromConsoleToString();
+            this.receiveInput = userInteractionInputHandler.exitInput(input);
         }
     }
 
