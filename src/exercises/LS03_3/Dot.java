@@ -46,6 +46,7 @@ public class Dot {
             setX(this.x + x);
             setY(this.y + y);
         } catch (IllegalArgumentException e) {
+            System.out.println("");
             e.printStackTrace();
         }
     }
