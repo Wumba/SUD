@@ -4,7 +4,7 @@ import exercises.utils.UserInteractionInputHandler;
 
 public class NumberSystemConversion {
 
-    UserInteractionInputHandler userInteractionInputHandler = new UserInteractionInputHandler();
+    private UserInteractionInputHandler userInteractionInputHandler = new UserInteractionInputHandler();
 
 
     private ENumberSystems chooseBase(String text) {
@@ -53,7 +53,7 @@ public class NumberSystemConversion {
 
 
     public void speakWithUser() {
-        System.out.println("please enter a number of one of the following number systems: hex, octa, deci or binary");
+        System.out.println("Please enter a number from the number systems: hex, octa, deci or binary");
         String inputNumber = userInteractionInputHandler.readDataFromConsoleToString();
         ENumberSystems inputNumberBase = chooseBase("Please enter a number system [binary, octa, deci, hex]");
         ENumberSystems goalNumberSystem = chooseBase("Please enter the wished number system you want to convert in [binary, octa, deci, hex].");
