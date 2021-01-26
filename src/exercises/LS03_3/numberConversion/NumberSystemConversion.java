@@ -14,9 +14,9 @@ public class NumberSystemConversion {
             String input = userInteractionInputHandler.readDataFromConsoleToString();
             switch (input) {
                 case "binary", "2" -> startBase = ENumberSystems.BINARY;
-                case "octa", "8" -> startBase = ENumberSystems.OCTA;
-                case "deci", "10" -> startBase = ENumberSystems.DECI;
-                case "hex", "16" -> startBase = ENumberSystems.HEXA;
+                case "octa", "8" -> startBase = ENumberSystems.OCTAL;
+                case "deci", "10" -> startBase = ENumberSystems.DECIMAL;
+                case "hex", "16" -> startBase = ENumberSystems.HEXADECIMAL;
                 case "" -> System.out.println("Please enter something!");
                 default -> System.out.println("This number system does not exist. Please try again.");
             }

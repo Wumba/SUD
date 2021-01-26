@@ -1,12 +1,12 @@
 package exercises.LS03_3.numberConversion;
 
 public enum ENumberSystems {
-    HEXA(6),
-    OCTA(8),
-    DECI(10),
+    HEXADECIMAL(16),
+    OCTAL(8),
+    DECIMAL(10),
     BINARY(2);
 
-    private int base;
+    private final int base;
 
     ENumberSystems(int value) {
         this.base = value;
